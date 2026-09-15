@@ -59,10 +59,11 @@ float fbm(vec2 p) {
 
 void main() {
   // Нормализация Aspect Ratio под любой экран (и вертикальный, и горизонтальный)
-  vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
+  vec2 uv = (gl_FragCoord.xy / u_res) - 0.5;
+  uv.x *= u_res.x / u_res.y;
   float t = u_time * 0.2;
 
-  vec2 q = uv * 2.0 + u_seed;
+  vec2 q = uv * 1.6 + u_seed;
   q += 0.4 * vec2(fbm(q + t), fbm(q + vec2(3.2, 1.7) - t));
   float f = fbm(q + vec2(t * 0.5, -t * 0.3));
 
