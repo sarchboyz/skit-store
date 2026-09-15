@@ -59,7 +59,7 @@ float fbm(vec2 p) {
 
 void main() {
   vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
-  float t = u_time * 0.06;
+  float t = u_time * 0.12;
 
   vec2 q = uv * 1.5;
   q += 0.4 * vec2(fbm(q + t), fbm(q + vec2(3.2, 1.7) - t));
